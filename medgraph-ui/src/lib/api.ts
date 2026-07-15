@@ -1,7 +1,7 @@
 import type { AskResponse } from './types';
 import { normalizeResponse } from './normalize';
 
-const BACKEND_URL = 'http://127.0.0.1:8000/ask';
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/docs';
 
 export class BackendError extends Error {
   readonly retryable: boolean;
@@ -15,7 +15,7 @@ export class BackendError extends Error {
 export async function askBackend(question: string, signal?: AbortSignal): Promise<AskResponse> {
   let res: Response;
   try {
-    res = await fetch(BACKEND_URL, {
+    res = await fetch(`${BACKEND_URL}/ask`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question }),
