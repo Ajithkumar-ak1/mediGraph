@@ -22,7 +22,7 @@ def vector_search(embedding, top_k=5):
 
             RETURN node.name AS name, score
             """,
-            embedding=embedding.tolist(),
+            embedding=embedding,
             top_k=top_k
         )
 

@@ -1,4 +1,4 @@
-from embedding.model import model
+from embedding.model import get_embedding
 from retrieval.vector_search import vector_search
 from retrieval.evidence_builder import build_evidence
 from retrieval.entity_anchor_traversal import EntityAnchorTraversal
@@ -12,7 +12,7 @@ from llm import generate_answer
 
 def graphrag(question):
 
-    embedding = model.encode(question)
+    embedding = get_embedding(question)
 
 
     
